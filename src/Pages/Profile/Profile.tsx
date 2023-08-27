@@ -8,7 +8,8 @@ const data:any={name:"",gender:true,phone:"",birthday:"",role:"USER",id:"0",emai
 
 const Profile = (props: Props) => {
   const {arrProfile,arrPutProfile,arrOrder,arrRoomOrder}:any=useSelector((state:RootState)=>state.profileReducer)
-  
+  const [display,setDisplay]=React.useState("none")
+  const [disabled,setDisabled]=React.useState(true)
   console.log(arrPutProfile)
   console.log(arrProfile)
   console.log(arrOrder)
@@ -25,17 +26,50 @@ const Profile = (props: Props) => {
     data[id]=value
     data["id"]=arrProfile["id"]
     data["email"]=arrProfile["email"]
+    if(data[id]!==""){
+      setDisabled(false)
+    }
+    
   }
   const putProfileApi=()=>{
+
     const action=putApiProfile(data["id"],data)
     dispatch(action)
   }
+  const alertSucess=()=>{
+    
+      return (
+        <>
+        <div className='col-6 col-md-6 col-sm-6 p-0 ' style={{display:`${display}`}}>
+        <div className='rounded-2 text-dark border border-success text-center d-flex  justify-content-center align-items-center p-2 ' style={{backgroundColor:"#e7ffec",boxSizing:"border-box"}}>
+            <div className='d-inline-block border border-success rounded-circle  bg-success text-white d-flex align-items-center justify-content-center' style={{width:"30px",height:"30px"}} >
+              <i className="fa fa-check" style={{fontSize:"10px"}}></i>
+            </div>
+              <span className='mx-3 text-success '>Cập nhật thành công</span>
+          </div>
+        </div>
+         
+        </>
+
+      )
+  }
   const handleSubmit=(e: React.SyntheticEvent<HTMLFormElement>):void=>{
     e.preventDefault();
+    
+    for (let item in data){
+      if(data[item]===""){
+        data[item]=arrProfile[item]
+      }
+    }
     putProfileApi()
-    console.log(data)
+    setDisplay("")
+    setTimeout(()=>{
+      setDisplay("none")
+      setDisabled(true)
+    },2000)
+    
   }
-  const getOrderRoomApi=()=>{
+  const getOrderRoomApi=()=>{ 
     const action=getApiOrder(arrLogin.user.id)
     dispatch(action)
   }
@@ -63,10 +97,15 @@ const Profile = (props: Props) => {
     <div className='container' >
       <div className='row'>
       <div className='col-12 col-sm-6 col-md-6' style={{marginTop:"5%"}}>
-      <form style={{maxWidth:"500px",maxHeight:"100vh"}} className='mx-auto bg-white px-2  rounded-5' onSubmit={handleSubmit}>
-        
-        <p className='fs-3 fw-bold text-start' style={{color:"#1E40AF"}}>Thông tin</p>
-      <div className="mb-3">
+      <form style={{maxWidth:"500px",maxHeight:"100vh",position:"relative"}} className='mx-auto bg-white px-2 rounded-5' onSubmit={handleSubmit}>
+        <div className='row gx-3'>
+          <div className='col-6 clo-md-6 col-sm-6'>
+            <p className='fs-3 fw-bold text-start' style={{color:"#1E40AF"}}>Thông tin</p>
+          </div>
+          {alertSucess()}
+        </div>
+       
+      <div className="mb-3 mt-3">
         <div className='row'>
           <div className='col-6 col-md-6 col-sm-6'>
             <div className='email'>
@@ -157,10 +196,11 @@ const Profile = (props: Props) => {
       </div>
      
       <div className='w-100 text-center'>
-          <button type="submit" className="btn btn-danger w-100">Cập nhật</button>
+          
+          <input type="submit" value="Send" disabled={disabled} className="btn btn-danger w-100"/>
       </div>
-      
-        
+     
+   
       
     </form>
       </div>
@@ -200,11 +240,7 @@ const Profile = (props: Props) => {
         </div>
       </div>
     </div>
-    
     </div>
-      <div className=' p-2 rounded-2 text-white' style={{position:"absolute",top:"2%",right:"20%",}}>
-      <i className="fa fa-check"></i><span className='mx-3'></span>
-      </div>
   </div>
   )
 }

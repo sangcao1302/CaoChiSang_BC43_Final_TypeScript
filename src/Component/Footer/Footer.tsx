@@ -5,8 +5,8 @@ type Props = {}
 
 const Footer = (props: Props) => {
   return (
-    <div className='footer mt-5'>
-      <div className='row text-start px-5 mx-3'>
+    <div className='container-fluid py-5 '>
+      <div className='row text-start px-5 mx-2'>
         <div className='col-12 col-sm-3 col-md-3'>
           <h5 className='fw-semibold'>Hỗ trợ</h5>
           <p>Trung tâm trợ giúp</p>
@@ -39,32 +39,46 @@ const Footer = (props: Props) => {
         </div>
       </div>
       <hr />
-      <div className='row px-5  mt-5'>
-        <div className='col-12 col-sm-6 col-md-6'>
-          <div className='d-flex '>
-              <span><i className="fa fa-copyright"></i> 2023 AirBnB,INC All right reversed.</span>
-              <NavLink to="#" className="mx-2 text-white text-decoration-none ">
-                Quyền riêng tư
-              </NavLink>
-              <NavLink to="#" className="mx-2 text-white text-decoration-none ">
-                Điều khoản
-              </NavLink>
+      <div className='row px-5 mt-5 mx-1'>
+        <div className='col-12 col-sm-9 col-md-9'>
+          <div className='d-flex flex-wrap'>
+              <div className=' text-start text-nowrap' style={{lineHeight:"50px"}}><i className="fa fa-copyright "></i> 2023 AirBnB,INC All right reversed.</div>
+              <div className=''>
+                <NavLink to="#" className="mx-2 text-white text-decoration-none  d-block text-start w-100" style={{lineHeight:"50px"}}>
+                  Quyền riêng tư
+                </NavLink>
+              </div>
+              <div className=''>
+                <NavLink to="#" className="mx-2 text-white text-decoration-none d-block text-start w-100" style={{lineHeight:"50px"}}>
+                  Điều khoản
+                </NavLink>
+              </div>
+             
+              
              
           </div>
         
         </div>
-        <div className='col-12 col-sm-6 col-md-6'>
-        <div className='d-flex text-center justify-content-end'>
-          <i className="fa fa-globe mt-1 mx-2"></i>
-              <NavLink to="#" className="mx-2 text-white text-decoration-none">
+        <div className='col-12 col-sm-3 col-md-3'>
+        <div className='d-flex flex-wrap'>
+          <div style={{lineHeight:"50px"}}><i className="fa fa-globe mt-1 text-start "></i></div>
+          <div style={{lineHeight:"50px"}}> <NavLink to="#" className=" text-white text-decoration-none d-block text-start w-100 mx-2">
                 Tiếng Việt(VN)
-              </NavLink>
-              <NavLink to="#" className="mx-2 text-white text-decoration-none">
+              </NavLink></div>
+          <div style={{lineHeight:"50px"}}>
+          <NavLink to="#" className=" text-white text-decoration-none d-block text-start w-100 mx-2">
                 $ USD
               </NavLink>
-              <NavLink to="#" className="mx-2 text-white text-decoration-none">
+          </div>
+          <div style={{lineHeight:"50px"}}>
+          <NavLink to="#" className=" text-white text-decoration-none d-block text-start w-100 mx-2">
                 Hỗ trợ tài nguyên  <i className="fa fa-angle-up mx-1" style={{fontSize:"12px"}}></i>
               </NavLink>
+          </div>
+          
+             
+              
+              
           </div>
         </div>
       </div>

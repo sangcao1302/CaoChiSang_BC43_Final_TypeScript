@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice,createAsyncThunk } from '@reduxjs/toolkit'
 import { DispatchType, RootState } from '../configStore';
-import { http, httpNonAuth,USER_LOGIN, getStoreJson, } from '../../Util/config';
+import { http, httpNonAuth,USER_LOGIN, setStoreJson, getStoreJson, } from '../../Util/config';
 import {history} from '../../index';
 
 export interface LoginModel{
@@ -25,7 +25,7 @@ export interface ErrorModel{
     arrError:ErrorModel[]
   }
 const initialState = {
-    arrLogin:[],
+    arrLogin:getStoreJson(USER_LOGIN),
     arrError:[]
 }
 
@@ -51,6 +51,8 @@ export const getApiLogin=(data:any)=>{
             const res=await http.post("/api/auth/signin",data)
             const action:PayloadAction<LoginModel[]>=getLogin(res.data.content)
             dispatch(action)
+            
+            setStoreJson(USER_LOGIN,res.data.content)
            if(res.data.content.user.role==="ADMIN"){
             history.push("/admin")
            }

@@ -1,131 +1,134 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { DispatchType, RootState } from '../../Redux/configStore'
-import { NavLink, useParams } from 'react-router-dom'
-import { getApiBookRoom, getApiComment, getApiDetailRoom, getApiRoom} from '../../Redux/reducers/detailRoom'
-import IosShareIcon from '@mui/icons-material/IosShare';
-import { DatePicker, Space } from 'antd';
-import moment from 'moment'
-import dayjs from 'dayjs'
+import { DispatchType, RootState } from "../../Redux/configStore";
+import { NavLink, useParams } from "react-router-dom";
+import {
+  getApiBookRoom,
+  getApiComment,
+  getApiDetailRoom,
+  getApiRoom,
+} from "../../Redux/reducers/detailRoom";
+import IosShareIcon from "@mui/icons-material/IosShare";
+import { DatePicker, Space } from "antd";
 
-type Props = {}
-const Post:any={
-  id:0,
- 
-maPhong: 0,
-ngayDen: "",
-ngayDi: "",
-soLuongKhach:0,
-maNguoiDung: 0,
-}
+type Props = {};
+const Post: any = {
+  id: 0,
+
+  maPhong: 0,
+  ngayDen: "",
+  ngayDi: "",
+  soLuongKhach: 0,
+  maNguoiDung: 0,
+};
 const Detail = (props: Props) => {
-  const { arrDetailRoom }:any=useSelector((state:RootState)=>state.detailRoom)
+  const { arrDetailRoom }: any = useSelector(
+    (state: RootState) => state.detailRoom
+  );
   const { arrLocation } = useSelector((state: RootState) => state.location);
-  const {  arrBookRoom, arrDataBook,arrComment }:any = useSelector((state: RootState) => state.detailRoom);
-  const {arrLogin}:any=useSelector((state:RootState)=>state.loginReducer)
-  console.log(arrBookRoom)
-  console.log(arrDataBook)
-  console.log(arrLogin)
-  const[checkIn,setCheckIn]=React.useState("")
-  console.log(checkIn)
-  const[checkOut,setCheckOut]=React.useState("")
-  console.log(checkOut)
-  const [customer,setCustomer]=React.useState()
-  const [count,setCount]:any=React.useState(0)
-  console.log(arrDetailRoom)
-  const dispatch:DispatchType=useDispatch()
-  const params=useParams()
-  const getApiDetail=()=>{
-    const action=getApiDetailRoom(params.roomId)
-    dispatch(action)
-  }
-  const getApiStateRoom =()=>{
-    const action=getApiRoom()
-    dispatch(action)
-  }
-  const getCommentApi=()=>{
-    const action=getApiComment(params.roomId)
-    dispatch(action)
-  }
+  const { arrBookRoom, arrDataBook, arrComment }: any = useSelector(
+    (state: RootState) => state.detailRoom
+  );
+  const { arrLogin }: any = useSelector(
+    (state: RootState) => state.loginReducer
+  );
+  console.log(arrBookRoom);
+  console.log(arrDataBook);
+  console.log(arrLogin);
+  const [checkIn, setCheckIn] = React.useState("");
+  console.log(checkIn);
+  const [checkOut, setCheckOut] = React.useState("");
+  console.log(checkOut);
+  const [customer, setCustomer] = React.useState();
+  const [count, setCount]: any = React.useState(0);
+  console.log(arrDetailRoom);
+  const dispatch: DispatchType = useDispatch();
+  const params = useParams();
+  const getApiDetail = () => {
+    const action = getApiDetailRoom(params.roomId);
+    dispatch(action);
+  };
+  const getApiStateRoom = () => {
+    const action = getApiRoom();
+    dispatch(action);
+  };
+  const getCommentApi = () => {
+    const action = getApiComment(params.roomId);
+    dispatch(action);
+  };
 
-  const getPostRoom=()=>{
-    const action=getApiBookRoom(Post)
-    dispatch(action)
-  }
+  const getPostRoom = () => {
+    const action = getApiBookRoom(Post);
+    dispatch(action);
+  };
 
- 
- 
-  
-  useEffect(()=>{
-    getApiDetail()
-    getApiStateRoom()
-    getCommentApi()
-   
-  },[params.roomId])
-  const DataLogin:any=[]
-  const dateFormat = 'YYYY-MM-DD'
-  const { RangePicker }:any = DatePicker;
+  useEffect(() => {
+    getApiDetail();
+    getApiStateRoom();
+    getCommentApi();
+  }, [params.roomId]);
 
-  const handleChange=(value:any,dateString:string)=>{
-    console.log(dateString[0])
-    Post.ngayDen=dateString[0]
-    Post.ngayDi=dateString[1]
-    console.log(dateString)
-  }
- 
-const handleCountUp=()=>{
-  setCount(count+1)
-  
-}
-const handleCountDown=()=>{
-  setCount(count-1)
-  if(count<0){
-    setCount(count+1)
-  }
-}
- const handleClick=()=>{
-       
-        // const action=getApiBookRoom(Post)
-        // dispatch(action)
-      if(arrLogin.length===0){
-        alert("Bạn phải đăng nhập")
-      }
-      else{
-        Post["maPhong"]=arrDetailRoom.id
-        Post["soLuongKhach"]=count
-        Post["maNguoiDung"]=arrLogin.user.id
-      }
-      getPostRoom()
-      console.log()
- }
- 
+  const { RangePicker }: any = DatePicker;
+
+  const handleChange = (value: any, dateString: string) => {
+    console.log(dateString[0]);
+    Post.ngayDen = dateString[0];
+    Post.ngayDi = dateString[1];
+    console.log(dateString);
+  };
+
+  const handleCountUp = () => {
+    setCount(count + 1);
+  };
+  const handleCountDown = () => {
+    setCount(count - 1);
+    if (count < 0) {
+      setCount(count + 1);
+    }
+  };
+  const handleClick = () => {
+    if (arrLogin.length === 0) {
+      alert("Bạn phải đăng nhập");
+    } else {
+      Post["maPhong"] = arrDetailRoom.id;
+      Post["soLuongKhach"] = count;
+      Post["maNguoiDung"] = arrLogin.user.id;
+    }
+    getPostRoom();
+    console.log();
+  };
+
   return (
     <div className="container">
-      <div className="w-100">
+      <div className="">
         <h3 className="mx-1">{arrDetailRoom["tenPhong"]}</h3>
         <div className="row">
-          <div className="col-12 col-md-6 col-sm-6">
+          <div className="col-12 col-md-10 col-sm-10 ">
             <span>
               <i className="fa fa-star"></i> 4. 64 đánh giá{" "}
               <span className="mx-2"></span>
               <i className="fa-solid fa-award "></i> Chủ nhà siêu cấp{" "}
             </span>
           </div>
-          <div className="col-12 col-md-6 col-sm-6 text-end px-4">
+          <div className="col-12 col-md-2 col-sm-2 p-0">
             <NavLink to={"#"} className="text-dark text-decoration-none">
               <IosShareIcon className="mx-2 text-dark mb-2"></IosShareIcon> Chia
               sẽ
             </NavLink>
-            <NavLink to={"#"} className="text-dark text-decoration-none">
+            <NavLink
+              to={"#"}
+              className="text-dark text-decoration-none w-100 text-nowrap"
+              style={{ marginLeft: `${window.innerWidth > 920 ? "25%" : ""}` }}
+            >
               <i className="fa fa-heart mx-2 text-dark"></i>Lưu
             </NavLink>
           </div>
         </div>
-        <img src={arrDetailRoom.hinhAnh} style={{ maxWidth: "100%" }} alt="" />
+        <img src={arrDetailRoom.hinhAnh} className="w-100" alt="" />
       </div>
-      <div className="row mt-3">
-        <div className="col-6 col-md-6 col-sm-6">
+      <div className="row mt-2 g-5">
+        <div className="col-12 col-md-8 col-sm-8">
           <div className="d-flex align-items-center">
             <div className="product w-50">
               <p className="fs-3">Toàn bộ căn hộ</p>
@@ -211,25 +214,16 @@ const handleCountDown=()=>{
           </div>
 
           <div className="d-flex ">
-            <svg
-              viewBox="0 0 32 32"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              role="presentation"
-              focusable="false"
-              style={{
-                display: "inline-block",
-                height: 24,
-                width: 54,
-                fill: "currentcolor",
-                marginTop: "1%",
-              }}
-            >
-              <path d="m16 17c3.8659932 0 7 3.1340068 7 7s-3.1340068 7-7 7-7-3.1340068-7-7 3.1340068-7 7-7zm0 2c-2.7614237 0-5 2.2385763-5 5s2.2385763 5 5 5 5-2.2385763 5-5-2.2385763-5-5-5zm9.6666667-18.66666667c1.0543618 0 1.9181651.81587779 1.9945142 1.85073766l.0054858.14926234v6.38196601c0 .70343383-.3690449 1.35080636-.9642646 1.71094856l-.1413082.0779058-9.6666667 4.8333334c-.5067495.2533747-1.0942474.2787122-1.6171466.0760124l-.1717078-.0760124-9.66666666-4.8333334c-.62917034-.3145851-1.04315599-.93418273-1.09908674-1.62762387l-.00648607-.16123049v-6.38196601c0-1.05436179.81587779-1.91816512 1.85073766-1.99451426l.14926234-.00548574zm0 2h-19.33333337v6.38196601l9.66666667 4.83333336 9.6666667-4.83333336z" />
-            </svg>
+            <div className="px-3 mt-2">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false" style={{display: 'inline-block', height: 24, width: 24, fill: 'currentcolor'}}><path d="M16 0c6.627 0 12 5.373 12 12 0 6.337-3.814 12.751-11.346 19.257L16 31.82l-1.076-.932C7.671 24.509 4 18.218 4 12 4 5.423 9.397 0 16 0zm0 2C10.504 2 6 6.525 6 12c0 5.44 3.249 11.118 9.831 17.02l.169.149.576-.518c6.178-5.65 9.293-11.092 9.42-16.318L26 12c0-5.523-4.477-10-10-10zm0 5a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z" /></svg>
+
+              
+            </div>
 
             <p className="mx-3">
-              <span className="d-block fw-bold fs-5">Địa điểm tuyệt vời</span>
+              <span className="d-block fw-bold fs-5 text-gray-800 text-base sm:text-lg ">
+                Địa điểm tuyệt vời
+              </span>
               90% khách gần đây đã xếp hạng 5 sao cho vị trí này.
             </p>
           </div>
@@ -301,14 +295,14 @@ const handleCountDown=()=>{
                     {arrDetailRoom.doXe === true ? "Đỗ xe" : ""}
                   </span>
                 </p>
-
-                <button className="p-2 text-dark bg-white rounded-2 mb-5">
-                  Hiển thị tất cả tiện nghi
-                </button>
               </div>
-              <div className="col-6 col-sm-6 col-md-6">
-                <p>
-                  <span className="mx-4">
+              <div className="col-12 col-sm-6 col-md-6">
+                <p
+                  style={{
+                    display: `${arrDetailRoom.bep === true ? "" : "none"}`,
+                  }}
+                >
+                  <span>
                     {arrDetailRoom.bep === true ? (
                       <i className="fa fa-tv"></i>
                     ) : (
@@ -320,7 +314,7 @@ const handleCountDown=()=>{
                   </span>
                 </p>
                 <p>
-                  <span className="mx-4">
+                  <span>
                     {arrDetailRoom.hoBoi === true ? (
                       <i className="fa fa-swimming-pool"></i>
                     ) : (
@@ -333,14 +327,17 @@ const handleCountDown=()=>{
                 </p>
               </div>
             </div>
+            <button className="p-2 text-dark bg-white rounded-2 mb-5">
+              Hiển thị tất cả tiện nghi
+            </button>
           </div>
         </div>
-        <div className="col-12 col-md-6 col-sm-6">
+        <div className="col-12 col-md-4 col-sm-4">
           <div
-            className="px-4 rounded-5 "
+            className="p-4 rounded-5 w-100"
             style={{
               border: "1px solid black",
-              maxWidth: "75%",
+
               position: "relative",
             }}
           >
@@ -351,7 +348,7 @@ const handleCountDown=()=>{
                 <span className="mx-2">(18 đánh giá)</span>
               </span>
             </div>
-            <div
+            {/* <div
               className="d-flex "
               style={{
                 position: "absolute",
@@ -372,28 +369,26 @@ const handleCountDown=()=>{
               }}
             >
               <p className=" w-100 fw-bold">Nhận Phòng</p>
-            </div>
-           
+            </div> */}
+
             <Space
               direction="vertical"
               style={{ border: "1px solid black" }}
               className="text-center mt-5 mb-2 rounded-5 w-100"
             >
-       
-       <RangePicker 
-                  style={{
-                    width: "80%",
+              <RangePicker
+                style={{
+                  width: "80%",
 
-                    textAlign: "center",
-                    margin: "auto",
-                    
-                  }}
-                  className=" border-0 mt-3  rounded-1 py-3 px-2 "
-                  // defaultValue={[dayjs(item.ngayDen, dateFormat),dayjs(item.ngayDi, dateFormat)]}
-                  onChange={handleChange}
-                />
+                  textAlign: "center",
+                  margin: "auto",
+                }}
+                className=" border-0 mt-3  rounded-1 py-3 px-2 "
+                // defaultValue={[dayjs(item.ngayDen, dateFormat),dayjs(item.ngayDi, dateFormat)]}
+                onChange={handleChange}
+              />
 
-              <div 
+              <div
                 className="countPerson mb-2 text-center border-0 w-100 border-top border-black"
                 style={{ border: "1px solid black", width: "52.4%" }}
               >
@@ -410,7 +405,7 @@ const handleCountDown=()=>{
                     <span className="fs-5">{item.soLuongKhach}</span>
                   }
                 })} */}
-                <span className=''>{count}</span>
+                <span className="">{count}</span>
                 <button
                   className="mx-5 rounded-1 mb-2 border-0"
                   style={{ width: "30px", height: "30px" }}
@@ -444,28 +439,36 @@ const handleCountDown=()=>{
           </div>
         </div>
       </div>
-      <div className=''>
+      <div className="comment">
         <h4>Bình Luận</h4>
-        <div className='row'>
-          { arrComment?.map((item:any)=>{
-              return <div className='col-12 col-md-6 col-sm-6'>
-                <div className='d-flex'>
-                  <div className='avatar'>
-                    <img src={item.avatar} style={{width:"50px",height:"50px"}} className='rounded-circle' alt="" />
+        <div className="row">
+          {arrComment?.map((item: any) => {
+            return (
+              <div className="col-12 col-md-6 col-sm-6">
+                <div className="d-flex">
+                  <div className="avatar">
+                    <img
+                      src={item.avatar}
+                      style={{ width: "50px", height: "50px" }}
+                      className="rounded-circle"
+                      alt=""
+                    />
                   </div>
-                  <div className='name w-50 mx-5'>
-                    <p className='fw-bold'>{item.tenNguoiBinhLuan} <br /><span className='fw-normal'>{item.ngayBinhLuan}</span></p>
-                    
+                  <div className="name w-50 mx-5">
+                    <p className="fw-bold">
+                      {item.tenNguoiBinhLuan} <br />
+                      <span className="fw-normal">{item.ngayBinhLuan}</span>
+                    </p>
                   </div>
                 </div>
-                <p className='mt-3'>{item.noiDung}</p>
+                <p className="mt-3">{item.noiDung}</p>
               </div>
-            })
-          }
+            );
+          })}
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Detail
+export default Detail;

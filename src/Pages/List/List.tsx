@@ -50,7 +50,7 @@ const List = (props: Props) => {
                   </div>
                 </Carousel>
                 <div className='d-flex px-2'>
-                  <NavLink to={`/detail/${item.id}`}  className='w-75 fw-semibold fs-4'>{item.tenPhong}</NavLink>
+                  <NavLink to={`/detail/${item.id}`}  className='w-75 fw-semibold fs-4 text-decoration-none text-dark'>{item.tenPhong}</NavLink>
                   <p className='w-25 fs-4'><i className="fa fa-star"></i>2.8</p>
                 </div>
                 <div className='px-2'>
