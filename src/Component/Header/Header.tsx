@@ -86,7 +86,7 @@ export default function Header({}: Props) {
     <div
       className="container-fluid"
       style={{
-        backgroundImage: `url("./assets/image/background.jpg")`,
+        backgroundImage: `url("../assets/image/background.jpg")`,
         minHeight: "600px",
         backgroundSize: "cover",
         backgroundPosition: "center center",
@@ -96,7 +96,7 @@ export default function Header({}: Props) {
       <div className="row">
         <div className="col-12 col-sm-4 col-md-4">
           <div className="logo w-100">
-            <img src="./assets/image/Logo.png" alt="" />
+            <img src="../assets/image/Logo.png" alt="" />
           </div>
         </div>
         <div className="col-12 col-sm-4 col-md-4">
@@ -312,20 +312,7 @@ export default function Header({}: Props) {
               <i className="fa fa-globe" style={{ color: "white" }} />
             </span>
 
-            {/* <Space direction="vertical">
-              <Space wrap>
-                <Dropdown menu={{ items }} placement="bottomRight">
-                  <Button
-                    style={{ backgroundColor: "transparent" }}
-                    className="rounded-pill"
-                  >
-                    <i className="fa fa-align-justify mx-2 text-white fs-6 mt-1" />
-                    <i className="fa fa-user-circle text-white fs-6 mt-1 mx-2"></i>
-                  </Button>
-                </Dropdown>
-              </Space>
-            </Space> */}
-              
+        
             <div className="dropdown mb-2 ">
             <a className="btn  text-white border border-dark-subtle" href="#"  data-bs-toggle="dropdown" aria-expanded="false">
             <i className="fa fa-align-justify mx-2 text-white fs-6 mt-1" />
