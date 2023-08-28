@@ -30,10 +30,10 @@ const Login = (props: Props) => {
   
   return (
     <div className="container-fulid w-screen h-screen" style={{backgroundImage: `url("./assets/image/backgroundairbnb.jpg")`,backgroundSize:"cover",backgroundPosition:"bottom left",height:"100vh",backgroundRepeat:"no-repeat" }}>
-      <div className='container px-5' >
+      <div className='container' >
         <div className='row'>
         <div className='col-12 col-sm-12 col-md-12' style={{marginTop:"15%"}}>
-        <form style={{maxWidth:"500px"}} className='mx-auto bg-white px-5 rounded-5' onSubmit={handleSubmit}>
+        <form style={{maxWidth:"520px"}} className='mx-auto bg-white px-2 rounded-5' onSubmit={handleSubmit}>
           <div className='logo text-center'>
           <img src="./assets/image/Logo.png" style={{width:"50%"}} alt="" />
           </div>
@@ -65,11 +65,11 @@ const Login = (props: Props) => {
           />
         </div>
         <div className='row'>
-          <div className='col-6 col-sm-6 col-md-6'>
-            <NavLink to={"%"} className="text-decoration-none text" style={{color:"blue"}}>Quên mật khẩu</NavLink>
+          <div className='col-12 col-sm-8 col-md-9 '>
+            <NavLink to={"#"} className="text-decoration-none text-nowrap" style={{color:"blue"}}>Quên mật khẩu</NavLink>
           </div>
-          <div className='col-6 col-sm-6 col-md-6 text-end'>
-            <button type="submit" className="btn btn-danger">
+          <div className='col-12 col-sm-4 col-md-3 '>
+            <button type="submit" className="btn btn-danger text-nowrap">
             Đăng nhập
         </button>
           </div>

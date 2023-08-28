@@ -13,6 +13,8 @@ import  Login  from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
 import Profile from './Pages/Profile/Profile';
 import Admin from './Pages/Admin/Admin';
+import ResponsiveItem from './Layout/MobileTemplate';
+import Header from './Component/Header/Header';
 //Setup redux
 
 
