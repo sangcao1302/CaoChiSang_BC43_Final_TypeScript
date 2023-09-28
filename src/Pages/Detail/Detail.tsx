@@ -15,7 +15,6 @@ import { DatePicker, Space } from "antd";
 type Props = {};
 const Post: any = {
   id: 0,
-
   maPhong: 0,
   ngayDen: "",
   ngayDi: "",
@@ -42,6 +41,9 @@ const Detail = (props: Props) => {
   console.log(checkOut);
   const [customer, setCustomer] = React.useState();
   const [count, setCount]: any = React.useState(0);
+  const [display,setDisPLay]=React.useState("none")
+  const [notification,setNotification]=React.useState("")
+  const [color,setColor]=React.useState("#198754")
   console.log(arrDetailRoom);
   const dispatch: DispatchType = useDispatch();
   const params = useParams();
@@ -87,15 +89,28 @@ const Detail = (props: Props) => {
       setCount(count + 1);
     }
   };
+ 
   const handleClick = () => {
-    if (arrLogin.length === 0) {
-      alert("Bạn phải đăng nhập");
+    if (arrLogin===undefined) {
+      setDisPLay("")
+      setTimeout(()=>{
+        setDisPLay("none")
+      },2000)
+      setNotification("Vui lòng đăng nhập")
+      setColor("red")
     } else {
       Post["maPhong"] = arrDetailRoom.id;
       Post["soLuongKhach"] = count;
       Post["maNguoiDung"] = arrLogin.user.id;
+      getPostRoom();
+      setDisPLay("")
+      setNotification("Đặt phòng thành công")
+      setTimeout(()=>{
+        setDisPLay("none")
+      },2000)
+      
+      setColor("#198754")
     }
-    getPostRoom();
     console.log();
   };
 
@@ -127,7 +142,7 @@ const Detail = (props: Props) => {
         </div>
         <img src={arrDetailRoom.hinhAnh} className="w-100" alt="" />
       </div>
-      <div className="row mt-2 g-5">
+      <div className="row mt-2">
         <div className="col-12 col-md-8 col-sm-8">
           <div className="d-flex align-items-center">
             <div className="product w-50">
@@ -333,8 +348,11 @@ const Detail = (props: Props) => {
           </div>
         </div>
         <div className="col-12 col-md-4 col-sm-4">
+          <div className="alert d-flex justify-content-end p-0" >
+            <p className="text-white text-end text-end px-3 py-1 fs-6 rounded-2" style={{display:`${display}`,backgroundColor:`${color}`}}>{notification}</p>      
+          </div>    
           <div
-            className="p-4 rounded-5 w-100"
+            className="p-4 rounded-5 w-100 mt-2"
             style={{
               border: "1px solid black",
 
@@ -439,7 +457,7 @@ const Detail = (props: Props) => {
           </div>
         </div>
       </div>
-      <div className="comment">
+      <div className="comment mt-5">
         <h4>Bình Luận</h4>
         <div className="row">
           {arrComment?.map((item: any) => {

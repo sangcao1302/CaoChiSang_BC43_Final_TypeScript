@@ -5,7 +5,7 @@ import React, {
   ReactEventHandler,
   useState,
 } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import { useOnClickOutside } from "usehooks-ts";
 
@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { DispatchType, RootState } from "../../Redux/configStore";
 import { LocationModel, getLocationApi } from "../../Redux/reducers/location";
 import { USER_LOGIN, clearStorage } from "../../Util/config";
+import { url } from "inspector";
 type Props = {};
 
 export default function Header({}: Props) {
@@ -34,7 +35,7 @@ export default function Header({}: Props) {
 
     setDisPlay("");
   };
-
+  const navigate=useNavigate()
   const ref = useRef(null);
   const handleClickOutside = () => {
     setDisPlay("none");
@@ -59,15 +60,18 @@ export default function Header({}: Props) {
           <NavLink className="nav-link" to={"/profile"}>Hello ! {arrLogin.user.email}</NavLink>
         </li> */}
         <div>
-          <NavLink
-              to={"/login"}
-              className="text-decoration-none text-black mx-2"
+          <button
+              
+              className="text-decoration-none text-black mx-2 bg-white border-0 p-0"
               onClick={() => {
+              
+                window.location.reload()
                 clearStorage(USER_LOGIN);
+                
               }}
             >
               Logout
-            </NavLink>
+            </button>
         </div>
         
 
@@ -96,7 +100,10 @@ export default function Header({}: Props) {
       <div className="row">
         <div className="col-12 col-sm-4 col-md-4">
           <div className="logo w-100">
+            <NavLink to={"/"}>
             <img src="../assets/image/Logo.png" alt="" />
+
+            </NavLink>
           </div>
         </div>
         <div className="col-12 col-sm-4 col-md-4">
