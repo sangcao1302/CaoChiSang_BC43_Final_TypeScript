@@ -125,7 +125,7 @@ export default function Header({}: Props) {
                 <div className="col-md-4">
                   <span>Tuần bất kì</span>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 text-nowrap">
                   <span className="mx-2">Tuần bất kì</span>
                   <span
                     style={{
@@ -142,11 +142,12 @@ export default function Header({}: Props) {
             </div>
 
             <ul
-              className="nav nav-tabs rounded-pill p-2 w-100"
+              className="nav nav-tabs rounded-pill p-2 w-50"
               id="myTab"
               role="tablist"
-              style={{ backgroundColor: "#EBEBEB", display: `${display}` }}
+              style={{ backgroundColor: "#EBEBEB", display: `${display}` ,position:"absolute" , right:"25%"}}
               ref={ref}
+              
             >
               <div className="row">
                 <div className="col-3 col-md-3 col-sm-3">
@@ -155,14 +156,13 @@ export default function Header({}: Props) {
                       className="nav-link active rounded-pill text-start text-dark border-0"
                       id="home-tab"
                       data-bs-toggle="tab"
-                      data-bs-target="#home"
+                      data-bs-target="#message"
                       type="button"
                       role="tab"
                       aria-controls="home"
-                      aria-selected="true"
+                      aria-selected="false"
                     >
                       <span>Địa điểm</span>
-                      <br />
 
                       <input
                         list="browsers"
@@ -187,29 +187,26 @@ export default function Header({}: Props) {
                     </button>
                   </li>
                 </div>
-                <div
-                  className="col-3 col-md-3 col-sm-3"
-                  style={{ position: "relative" }}
-                >
+                
+                <div className="col-3 col-md-3 col-sm-3">
                   <li className="nav-item mt-2" role="presentation">
                     <button
-                      className="nav-link  rounded-pill text-start text-dark border-0"
-                      id="profile-tab"
+                      className="nav-link rounded-pill text-start text-dark"
+                      id="messages-tab"
                       data-bs-toggle="tab"
-                      data-bs-target="#profile"
+                      data-bs-target="#messages"
                       type="button"
                       role="tab"
-                      aria-controls="profile"
+                      aria-controls="messages"
                       aria-selected="false"
                     >
                       <span>Nhận phòng</span>
-                      <br />
+
                       <input
                         name="checkIn"
                         type="date"
                         id="checkInDate"
                         className="bg-transparent outline-none"
-                        placeholder="Thêm ngày"
                         style={{
                           border: "none",
                           outline: "none",
@@ -223,7 +220,7 @@ export default function Header({}: Props) {
                 <div className="col-3 col-md-3 col-sm-3">
                   <li className="nav-item mt-2" role="presentation">
                     <button
-                      className="nav-link   rounded-pill text-start text-dark"
+                      className="nav-link rounded-pill text-start text-dark"
                       id="messages-tab"
                       data-bs-toggle="tab"
                       data-bs-target="#messages"
@@ -239,7 +236,6 @@ export default function Header({}: Props) {
                         type="date"
                         id="checkInDate"
                         className="bg-transparent outline-none"
-                        placeholder="Thêm ngày"
                         style={{
                           border: "none",
                           outline: "none",
@@ -275,7 +271,7 @@ export default function Header({}: Props) {
                             }}
                           />
                         </div>
-                        <div className="icon-search mt-3 w-50">
+                        <div className="icon-search mt-3 w-50 text-end">
                           <NavLink
                             className="rounded-circle mx-3 mt-2 border-0 d-inline"
                             style={{
