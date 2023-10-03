@@ -81,7 +81,7 @@ import React, {
       <div
         className="container-fluid"
         style={{
-          backgroundImage: `url("./assets/image/background.jpg")`,
+          backgroundImage: `url("../assets/image/background.jpg")`,
           minHeight: "600px",
           backgroundSize: "cover",
           backgroundPosition: "center center",
