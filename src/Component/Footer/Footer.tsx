@@ -6,7 +6,7 @@ type Props = {}
 const Footer = (props: Props) => {
   return (
     <div className='container-fluid py-5 '>
-      <div className='row text-start px-5 mx-2'>
+      <div className='row text-start '>
         <div className='col-12 col-sm-3 col-md-3'>
           <h5 className='fw-semibold'>Hỗ trợ</h5>
           <p>Trung tâm trợ giúp</p>
@@ -39,17 +39,17 @@ const Footer = (props: Props) => {
         </div>
       </div>
       <hr />
-      <div className='row px-5 mt-5 mx-1'>
+      <div className='row '>
         <div className='col-12 col-sm-9 col-md-9'>
           <div className='d-flex flex-wrap'>
-              <div className=' text-start text-nowrap' style={{lineHeight:"50px"}}><i className="fa fa-copyright "></i> 2023 AirBnB,INC All right reversed.</div>
+              <div className=' text-start' style={{lineHeight:"50px" , marginRight:"12px"}}><i className="fa fa-copyright "></i> 2023 AirBnB,INC All right reversed.</div>
               <div className=''>
-                <NavLink to="#" className="mx-2 text-white text-decoration-none  d-block text-start w-100" style={{lineHeight:"50px"}}>
+                <NavLink to="#" className=" text-white text-decoration-none  d-block text-start w-100" style={{lineHeight:"50px" ,marginRight:"12px"}}>
                   Quyền riêng tư
                 </NavLink>
               </div>
               <div className=''>
-                <NavLink to="#" className="mx-2 text-white text-decoration-none d-block text-start w-100" style={{lineHeight:"50px"}}>
+                <NavLink to="#" className=" text-white text-decoration-none d-block text-start w-100" style={{lineHeight:"50px"}}>
                   Điều khoản
                 </NavLink>
               </div>

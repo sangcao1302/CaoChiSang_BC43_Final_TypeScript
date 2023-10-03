@@ -107,25 +107,26 @@ export default function Header({}: Props) {
           </div>
         </div>
         <div className="col-12 col-sm-4 col-md-4">
-          <div className="dropDown mt-4">
+          <div className="dropDown mt-4" >
             <div
-              className=" text-white text-center rounded-pill p-3"
+             className="w-100 justify-content-center d-flex"
+              ref={ref}
+              onClick={handleClick || handleClickOutside}
+            >
+              <div  className=" text-white text-center rounded-pill py-3 px-3"
               style={{
                 border: "1px solid gray",
                 backgroundColor: "transparent",
                 cursor: "pointer",
-              }}
-              ref={ref}
-              onClick={handleClick || handleClickOutside}
-            >
-              <div className="row ">
-                <div className="col-md-4">
+                position:"absolute"
+              }}>
+                {/* <div className="col-md-4 col-4 col-sm-4">
                   <span className="">Địa điểm bất kì</span>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-4 col-4 col-sm-4">
                   <span>Tuần bất kì</span>
                 </div>
-                <div className="col-md-4 text-nowrap">
+                <div className="col-md-4 col-4 col-sm-4 text-nowrap">
                   <span className="mx-2">Tuần bất kì</span>
                   <span
                     style={{
@@ -137,21 +138,34 @@ export default function Header({}: Props) {
                   >
                     <i className="fab fa-sistrix fs-6" />
                   </span>
-                </div>
+                </div> */}
+                <span className="mx-2">Địa điểm bất kì  |</span>
+                <span className="mx-2">Tuần bất kì |</span>
+                <span className="mx-2">Them khach</span>
+                <span
+                    style={{
+                      backgroundColor: "#ff385c",
+                      width: "25px",
+                      height: "25px",
+                    }}
+                    className="rounded-circle px-2 py-1"
+                  >
+                    <i className="fab fa-sistrix fs-6" />
+                  </span>
               </div>
             </div>
-
+            <div className="w-100 d-flex justify-content-center">
             <ul
-              className="nav nav-tabs rounded-pill p-2 w-50"
+              className="nav nav-tabs rounded-pill justify-content-around py-3 w-75 "
               id="myTab"
               role="tablist"
-              style={{ backgroundColor: "#EBEBEB", display: `${display}` ,position:"absolute" , right:"25%"}}
+              style={{ backgroundColor: "#EBEBEB", display: `${display}` ,position:"absolute",top:"83.2px"}}
               ref={ref}
               
             >
-              <div className="row">
+              <div className="row g-5">
                 <div className="col-3 col-md-3 col-sm-3">
-                  <li className="nav-item p-2" role="presentation">
+                  <li className="nav-item mt-1" role="presentation">
                     <button
                       className="nav-link active rounded-pill text-start text-dark border-0"
                       id="home-tab"
@@ -163,14 +177,14 @@ export default function Header({}: Props) {
                       aria-selected="false"
                     >
                       <span>Địa điểm</span>
-
+                    <br />
                       <input
                         list="browsers"
                         id="browser"
                         style={{
                           border: "none",
                           outline: "none",
-                          maxWidth: "120px",
+                          maxWidth: "110px",
                           backgroundColor: "transparent",
                         }}
                         onChange={handleLocation}
@@ -189,7 +203,7 @@ export default function Header({}: Props) {
                 </div>
                 
                 <div className="col-3 col-md-3 col-sm-3">
-                  <li className="nav-item mt-2" role="presentation">
+                  <li className="nav-item mt-1" role="presentation">
                     <button
                       className="nav-link rounded-pill text-start text-dark"
                       id="messages-tab"
@@ -201,7 +215,7 @@ export default function Header({}: Props) {
                       aria-selected="false"
                     >
                       <span>Nhận phòng</span>
-
+                        <br />
                       <input
                         name="checkIn"
                         type="date"
@@ -210,7 +224,7 @@ export default function Header({}: Props) {
                         style={{
                           border: "none",
                           outline: "none",
-                          maxWidth: "120px",
+                          maxWidth: "110px",
                           backgroundColor: "transparent",
                         }}
                       />
@@ -218,7 +232,7 @@ export default function Header({}: Props) {
                   </li>
                 </div>
                 <div className="col-3 col-md-3 col-sm-3">
-                  <li className="nav-item mt-2" role="presentation">
+                  <li className="nav-item mt-1" role="presentation">
                     <button
                       className="nav-link rounded-pill text-start text-dark"
                       id="messages-tab"
@@ -230,7 +244,7 @@ export default function Header({}: Props) {
                       aria-selected="false"
                     >
                       <span>Trả phòng</span>
-
+                        <br />
                       <input
                         name="checkIn"
                         type="date"
@@ -239,7 +253,7 @@ export default function Header({}: Props) {
                         style={{
                           border: "none",
                           outline: "none",
-                          maxWidth: "120px",
+                          maxWidth: "110px",
                           backgroundColor: "transparent",
                         }}
                       />
@@ -247,7 +261,7 @@ export default function Header({}: Props) {
                   </li>
                 </div>
                 <div className="col-3 col-md-3 col-sm-3">
-                  <li className="nav-item mt-2" role="presentation">
+                  <li className="nav-item mt-1" role="presentation">
                     <button
                       className="nav-link rounded-pill text-start text-dark w-100"
                       id="person-tab"
@@ -258,15 +272,17 @@ export default function Header({}: Props) {
                       aria-controls="person"
                       aria-selected="false"
                     >
+                     
                       <div className="d-flex">
                         <div className="w-50">
-                          <label htmlFor="">Khách</label>
+                        <span>Khach</span>
+                        <br />
                           <input
                             type="text"
                             style={{
                               border: "none",
                               outline: "none",
-                              maxWidth: "120px",
+                              maxWidth: "110px",
                               backgroundColor: "transparent",
                             }}
                           />
@@ -300,6 +316,8 @@ export default function Header({}: Props) {
                 </div>
               </div>
             </ul>
+              </div>        
+           
           </div>
         </div>
 

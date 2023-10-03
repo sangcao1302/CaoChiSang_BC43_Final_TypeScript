@@ -94,16 +94,12 @@ import React, {
           <div className="col-12 col-sm-12 col-md-12 p-0">
             <div className="dropDown mt-4 w-100">
               <div
-                className=" text-white text-center rounded-pill p-3"
-                style={{
-                  border: "1px solid gray",
-                  backgroundColor: "transparent",
-                  cursor: "pointer",
-                }}
+                className=" text-white text-center p-3 d-flex w-100 justify-content-center"
+              
                 ref={ref}
                 onClick={handleClick || handleClickOutside}
               >
-                <div className="row text-center">
+                {/* <div className="row text-center">
                   <div className="col-4">
                     <div><span className="text-nowrap" style={{fontSize:"14px"}}>Địa điểm bất kì</span></div>
                   </div>
@@ -112,30 +108,32 @@ import React, {
                   </div>
                   <div className="col-4 text-nowrap p-0">
                     <span className=" mx-2" style={{fontSize:"14px"}}>Thêm khách</span>
-                    <span
-                      style={{
-                        backgroundColor: "#ff385c",
-                        width: "25px",
-                        height: "25px",
-                      }}
-                      className="rounded-circle px-2 py-1"
-                    >
-                      <i className="fab fa-sistrix fs-6" />
-                    </span>
+                 
                   </div>
+                </div> */}
+                <div className="rounded-pill py-2"  style={{
+                  border: "1px solid gray",
+                  backgroundColor: "transparent",
+                  cursor: "pointer",
+                  position:"absolute",
+                  
+                }}>
+                <span className="mx-2">Địa điểm bất kì  |</span>
+                <span className="mx-2">Tuần bất kì |</span>
+                <span className="mx-2">Them khach</span>
                 </div>
               </div>
   
               <ul
-                className="nav nav-tabs p-2 w-100 border-5"
+                className="nav nav-tabs py-2 w-100 border-5"
                 id="myTab"
                 role="tablist"
-                style={{ backgroundColor: "#EBEBEB", display: `${display}` }}
+                style={{ backgroundColor: "#EBEBEB", display: `${display}`,position:"absolute",top:"107px", right:"0",left:"0" }}
                 ref={ref}
               >
-                <div className="row">
+                <div className="row w-100 justify-content-center mx-2">
                   <div className="col-12">
-                    <li className="nav-item p-2" role="presentation">
+                    <li className="nav-item" role="presentation">
                       <button
                         className="nav-link active rounded-pill text-start text-dark border-0 w-100"
                         id="home-tab"
@@ -155,7 +153,7 @@ import React, {
                           style={{
                             border: "none",
                             outline: "none",
-                            width:"100%",
+                            maxWidth:"100%",
                             backgroundColor: "transparent",
                           }}
                           onChange={handleLocation}
@@ -174,7 +172,6 @@ import React, {
                   </div>
                   <div
                     className="col-12"
-                    style={{ position: "relative" }}
                   >
                     <li className="nav-item mt-2" role="presentation">
                       <button
@@ -198,7 +195,7 @@ import React, {
                           style={{
                             border: "none",
                             outline: "none",
-                            width:"100%",
+                            maxWidth:"100%",
                             backgroundColor: "transparent",
                           }}
                         />
@@ -228,7 +225,7 @@ import React, {
                           style={{
                             border: "none",
                             outline: "none",
-                            width:"100%",
+                            maxWidth:"100%",
                             backgroundColor: "transparent",
                           }}
                         />
@@ -255,7 +252,7 @@ import React, {
                               style={{
                                 border: "none",
                                 outline: "none",
-                                // maxWidth: "120px",
+                                maxWidth: "120px",
                                 backgroundColor: "transparent",
                               }}
                             />
@@ -293,19 +290,19 @@ import React, {
           </div>
           <div className="row">
           <div className="col-12">
-          <div className="dropdown-center mb-2 tex-center w-100 " style={{position:"fixed",bottom:"-10px",right:"0px",}}>
-            <div className="btn text-white bg-white d-block d-flex" data-bs-toggle="dropdown" aria-expanded="false">
-                <div className="w-100">
+          <div className="dropdown-center mb-2 tex-center " style={{position:"fixed",bottom:"-10px",right:"0px",left:"0px"}}>
+            <div className="btn text-white bg-white d-flex " data-bs-toggle="dropdown" aria-expanded="false">
+                <div className="w-50">
                 <i className="fa fa-align-justify mx-2 text-dark fs-6 mt-1" />
 
                 </div>
                 <span className="text-dark">|</span>
-                <div className="w-100">
+                <div className="w-50">
                 <i className="fa fa-user-circle text-dark fs-6 mt-1 mx-2"></i>
 
                   </div>               
             </div>
-            <ul className="dropdown-menu w-100" style={{lineHeight:"45px"}}>
+            <ul className="dropdown-menu" style={{lineHeight:"45px"}}>
               <div>
                 <NavLink to={"/login"} className="text-decoration-none text-black mx-2" style={{display:`${arrLogin ? "none":""}`}}>
                 Đăng nhập
